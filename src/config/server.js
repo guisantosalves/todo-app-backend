@@ -3,6 +3,7 @@ const port = 3003
 const bodyParser = require('body-parser')
 const express = require('express')
 const app = express()
+const allowCors = require('./cors')
 
 //colocando middlewares
 /*
@@ -11,7 +12,10 @@ and the next middleware function in the application's request-response cycle.
 */
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
+app.use(allowCors)
 
 app.listen(port, function(){
     console.log(`tudo ok, rodando na porta ${port}.`)
 })
+
+module.exports = app
